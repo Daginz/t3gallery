@@ -1,7 +1,11 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"],
+  variable: "--font-sans",
+ });
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -14,12 +18,23 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
+
+function TopNav() {
+  return (
+  <nav className="flex items-center justify-between w-full p-4 text-xl font-semibold border-b">
+      <div>Gallery</div>
+
+      <div>Sign in</div>
+    </nav>  
+  )}
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+    <body className={`font-sans ${inter.variable} flex flex-col gap-4`}>
+        <TopNav />
+        {children}</body>
     </html>
   );
 }
